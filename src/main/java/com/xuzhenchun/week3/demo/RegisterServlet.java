@@ -8,8 +8,17 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.*;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+
 @WebServlet(
-        urlPatterns = {"/Register"}
+        urlPatterns = {"/register"}
 )
 
 public class RegisterServlet extends HttpServlet {
@@ -33,24 +42,24 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ID=request.getParameter("id");
-        String Username=request.getParameter("username");
+        String ID=request.getParameter("ID");
+        String Username=request.getParameter("Username");
         String password=request.getParameter("password");
-        String Email=request.getParameter("email");
-        String Gender=request.getParameter("gender");
-        String Date=request.getParameter("date");
+        String Email=request.getParameter("Email");
+        String Gender=request.getParameter("Gender");
+        String Date=request.getParameter("Date");
 
         /*PrintWriter writer= response.getWriter();
-        writer.println("<br>Username :"+username);
+        writer.println("<br>Username :"+Username);
         writer.println("<br>password :"+password);
-        writer.println("<br>Email :"+email);
-        writer.println("<br>Gender :"+gender);
-        writer.println("<br>Date :"+date);
+        writer.println("<br>Email :"+Email);
+        writer.println("<br>Gender :"+Gender);
+        writer.println("<br>Date :"+Date);
         writer.close();*/
         String sql1="insert into Usertable values(?,?,?,?,?,?)";
         PreparedStatement pstmt= null;
@@ -63,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
             pstmt.setString(5,Gender);
             pstmt.setString(6,Date);
             pstmt.executeUpdate();
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("login");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
