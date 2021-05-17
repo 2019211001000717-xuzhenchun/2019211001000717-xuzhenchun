@@ -1,12 +1,4 @@
 package com.xuzhenchun.week3.demo;
-import javax.servlet.*;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebInitParam;
@@ -18,7 +10,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 
 @WebServlet(
-        urlPatterns = {"/register"}
+        urlPatterns = {"/Register"}
 )
 
 public class RegisterServlet extends HttpServlet {
@@ -47,11 +39,11 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String Username=request.getParameter("Username");
+        String Username=request.getParameter("username");
         String password=request.getParameter("password");
-        String Email=request.getParameter("Email");
-        String Gender=request.getParameter("Gender");
-        String Date=request.getParameter("Date");
+        String Email=request.getParameter("email");
+        String Gender=request.getParameter("gender");
+        String Date=request.getParameter("date");
 
         /*PrintWriter writer= response.getWriter();
         writer.println("<br>Username :"+Username);
@@ -62,7 +54,8 @@ public class RegisterServlet extends HttpServlet {
         writer.close();*/
         String sql1="insert into Usertable values(?,?,?,?,?)";
         PreparedStatement pstmt= null;
-        try {
+        try
+        {
             pstmt = con.prepareStatement(sql1);
             pstmt.setString(1,Username);
             pstmt.setString(2,password);
@@ -70,11 +63,13 @@ public class RegisterServlet extends HttpServlet {
             pstmt.setString(4,Gender);
             pstmt.setString(5,Date);
             pstmt.executeUpdate();
-            response.sendRedirect("login");
+            response.sendRedirect("login" +
+                    "");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        /*response.setContentType("text/html");
+        /*
+        response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<html>");
         out.println("<head><title>Register</title></head>");
@@ -101,7 +96,7 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        /*out.println("</table>");
+        out.println("</table>");
         out.println("</body>");
         out.println("</html>");*/
     }

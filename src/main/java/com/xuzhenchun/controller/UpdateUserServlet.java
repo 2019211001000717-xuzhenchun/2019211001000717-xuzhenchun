@@ -1,8 +1,6 @@
 package com.xuzhenchun.controller;
-
-
-import com.xuzhenchun.dao.UserDao ;
-import com.xuzhenchun.model.User ;
+import com.xuzhenchun.dao.UserDao;
+import com.xuzhenchun.model.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

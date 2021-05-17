@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.xuzhenchun.model.User" %><%--
   Created by IntelliJ IDEA.
   User: 86135
   Date: 2021/4/24
@@ -9,12 +9,12 @@
 <%@include file="header.jsp"%>
 <h1>User Update</h1>
 <%
-    User u=(User) session.getAttribute("user");
+    User  u=(User) session.getAttribute("user");
 %>
-<form method="post" action="/2019211001000717XuZhenchun_war_exploded/updateUser">
+<form method="post" action="/2019211001000712ZhangYu_war_exploded/updateUser">
     <table>
         <tr> <td>Id:</td> <td><input type="text" name="Id" value="<%=u.getId()%>" required><br/></td></tr>
-        <tr> <td>Username:</td> <td><input type="text" name="Username" value="<%=u.getUsername() %>"><br/></td></tr>
+        <tr> <td>Username:</td> <td><input type="text" name="Username" value="<%=u.getUsername()%>"><br/></td></tr>
         <tr> <td>password:</td> <td><input type="password" name="password" value="<%=u.getPassword()%>"><br/></td></tr>
         <tr> <td>Email:</td> <td><input type="email" name="Email" value="<%=u.getEmail()%>"><br/></td></tr>
         <tr>
